@@ -58,26 +58,12 @@ def main():
 
         if(args.state == 'UNLOCK'):
             res = loqed.unlock(args.lock_id, args.lock_api_key, args.api_token, args.local_key_id)
-
-    except requests.exceptions.ConnectionError:
-        print("Error: Could not connect to LOQED")
-        sys.exit(2)
-    except requests.exceptions.HTTPError:
-        print("Error: Received invalid response")
-        sys.exit(3)
-    except requests.exceptions.Timeout:
-        print("Error: Request timed out")
-        sys.exit(4)
-    except requests.exceptions.TooManyRedirects:
-        print("Error: Too many redirects")
-        sys.exit(5)
-    except requests.exceptions.RequestException as reqe:
-        print("Error: {e}".format(e=reqe))
-        sys.exit(6)
-
-    if res.status_code != requests.codes.ok:
-        print("General error!")
+    except:
+        print(res)
         sys.exit(8)
+    else:
+        print(res)
+    
 
 if __name__ == "__main__":
     main()
